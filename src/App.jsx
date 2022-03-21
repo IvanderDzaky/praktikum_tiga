@@ -9,6 +9,7 @@ import data from './data/data'
 function App() {
   const { products } = data
 
+  const [dark, setDark] = useState()
   const [cartItems, setCartItems] = useState([])
   const [search, setSearch] = useState('')
   const [filteredResults, setFilteredResults] = useState([])
@@ -70,10 +71,13 @@ function App() {
   }
 
   return (
-    <div>
-      <div className='bg-gray-900 min-h-screen'>
+    <div className={dark ? 'dark' : ''}>
+      <div className='dark:bg-gray-900 min-h-screen transition-all ease-in-out duration-300'>
+        <div className='flex justify-end items-end p-5'>
+          <button className='text-white dark:text-black bg-black dark:bg-white px-2 rounded-md' onClick={() => setDark(!dark)}>{dark ? 'Nopal' : 'Vann'}</button>
+        </div>
         <div className='flex justify-center items-center flex-col'>
-          <h1 className='font-bold text-center text-white my-8 md:text-4xl text-3xl'>List Keranjang Belanja</h1>
+          <h1 className='font-bold text-center dark:text-white my-8 md:text-4xl text-3xl'>List Keranjang Belanja</h1>
         </div>
         <div className='grid grid-cols-12 gap-6 mt-5'>
           <div className='col-span-12 sm:col-span-12 md:col-span-7 lg:col-span-8 xxl:col-span-8'>
@@ -93,10 +97,10 @@ function App() {
             }
           </div>
           <div className='col-span-12 sm:col-span-12 md:col-span-5 lg:col-span-4 xxl:col-span-4'>
-            <div className='bg-white py-4 px-4 shadow-xl rounded-lg my-4 mx-4'>
+            <div className='bg-gray-100 dark:bg-white py-4 px-4 shadow-lg rounded-lg my-4 mx-4'>
               {cartItems.length === 0 && (
                 <div className='flex justify-center items-center flex-col'>
-                  <h1 className='font-bold text-center text-gray-700 my-3 md:text-4xl text-3xl'>Keranjang Belanja Kosong</h1>
+                  <h1 className='font-bold text-center my-3 md:text-4xl text-3xl'>Keranjang Belanja Kosong</h1>
                 </div>
               )}
 
@@ -108,7 +112,7 @@ function App() {
             </div>
             {
               cartItems.length > 0 && (
-                <div className='bg-white py-4 px-4 shadow-xl rounded-lg my-4 mx-4'>
+                <div className='bg-gray-100 dark:bg-white py-4 px-4 shadow-lg rounded-lg my-4 mx-4'>
                   <div className='flex justify-center items-center text-center'>
                     <div className='text-xl font-semibold w-full'>
                       <p>Total Harga</p>
